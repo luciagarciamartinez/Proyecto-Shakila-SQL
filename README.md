@@ -6,6 +6,8 @@ Shakila Data Analysis: Proyecto SQL💻​
 
 Este proyecto consiste en la aplicación práctica de conocimientos de análisis de datos utilizando SQL. En este repositorio presento la solución a 64 ejercicios diseñados para practicar desde las consultas más sencillas hasta análisis de negocio mucho más completos. A lo largo de estos retos, he ido resolviendo distintos tipos de problemas reales, lo que me ha permitido extraer información estratégica sobre el comportamiento de los clientes, las tendencias de alquiler por categorías, el control del inventario, la participación de los actores en las películas…
 Para ello, he trabajado con la base de datos “Shakila”, que simula una tienda de alquiler de películas con diferentes tablas que se relacionan entre sí, tal y como se muestra en la siguiente imagen del diagrama de entidad-relación de la base de datos.
+<img width="2104" height="1525" alt="Diagrama Proyecto_shakila" src="https://github.com/user-attachments/assets/d2067f9a-3ea4-4111-b3dd-07b61d11535d" />
+
 
 ## 3. Herramientas Utilizadas.
 
