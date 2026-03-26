@@ -14,7 +14,8 @@ where "actor_id" between 30 and 40;
 
 select "title"
 from "film"
-where "language_id" = "original_language_id";
+where "language_id" = "original_language_id"
+or "original_language_id" is null;
 
 -- Ejercicio 5--
 
@@ -165,17 +166,17 @@ having COUNT("film_id") > 40;
 
 -- Ejercicio 29 --
 
-select f."title", COUNT("store_id") as inventario_disponible
-from inventory i 
-left join film f on f.film_id = i.film_id
-group by f.title;
+select f."title", COUNT(i."inventory_id") as inventario_disponible
+from film f 
+left join inventory i on f.film_id = i.film_id
+group by f.film_id, f.title;
 
 -- Ejercicio 30 --
 
 select a."actor_id", concat(a."first_name",' ',a."last_name") as nombre_completo, COUNT("film_id")
-from film_actor fa 
-inner join actor a on a.actor_id = fa.actor_id 
-group by a."actor_id";
+from "actor" a
+inner join "film_actor" fa on a.actor_id = fa.actor_id 
+group by a."actor_id", a."first_name", a."last_name";
 
 -- Ejercicio 31 --
 
@@ -290,15 +291,15 @@ where actor_id not in (select "actor_id" from "film_actor");
 select a."first_name", a."last_name", count(fa.film_id ) as numero_peliculas
 from actor a 
 inner join film_actor fa on a.actor_id = fa.actor_id 
-group by a."first_name", a."last_name";
+group by a."actor_id", a."first_name", a."last_name";
 
 -- Ejercicio 48 --
 
-create view  actor_num_peliculas as
-select a."first_name", a."last_name", count(fa.film_id ) as numero_peliculas
-from actor a 
-inner join film_actor fa on a.actor_id = fa.actor_id 
-group by a."first_name", a."last_name";
+create view actor_num_peliculas as
+select a."actor_id",  a."first_name", a."last_name", count(fa."film_id" ) as numero_peliculas
+from "actor" a 
+inner join "film_actor" fa on a."actor_id" = fa."actor_id" 
+group by a."actor_id", a."first_name", a."last_name";
 
 -- Ejercicio 49 --
 
@@ -314,8 +315,8 @@ select SUM(f."length")as "duaracion_total", c."name"
 from film f 
 inner join film_category fc on f.film_id = fc.film_id
 inner join category c on fc.category_id = c.category_id
-group by c."name"
-having c."name" = 'Action';
+where c."name" = 'Action'
+group by c.category_id , c."name";
 
 -- Ejercicio 51 --
 
